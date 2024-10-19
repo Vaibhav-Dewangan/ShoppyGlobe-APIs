@@ -49,7 +49,7 @@ const LoginPage = ()=>{
                     // After successful registration, switch to login form
                     setNewUser(false);
                 } else {
-                    login(data.token); // Use the context login function
+                    login(data.token); 
                     localStorage.setItem('email', formData.email); // Store email in localStorage
                 }
             } else{

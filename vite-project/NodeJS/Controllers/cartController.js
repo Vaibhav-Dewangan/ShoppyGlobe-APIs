@@ -36,13 +36,6 @@ export const addToCart = async (req, res) => {
                 userId,
                 productId,
                 quantity,
-                title: product.title,
-                price: product.price,
-                stock: product.stock,
-                brand: product.brand,
-                shippingInformation: product.shippingInformation,
-                availabilityStatus: product.availabilityStatus,
-                images: product.images,
             });
         }
 

@@ -6,22 +6,22 @@ import useFetchData from "../hooks/useFetch";
 import { jwtDecode } from "jwt-decode";
 
 
-function UserDetails(){
-    
-    const {logout,isLogin} = useAuth();
-    const url = "http://localhost:5100/users";
-    const {data, isLoading, error} = useFetchData(url);
-    const loginEmail = localStorage.getItem('email');
-    const [remainingTime , setRemainingTime] = useState(0);
+function UserDetails() {
 
-    const userData = useMemo(()=> data ? data.find((user)=> user.email === loginEmail) : null,[data, loginEmail]);
+    const { logout, isLogin } = useAuth();
+    const url = "http://localhost:5100/users";
+    const { data, isLoading, error } = useFetchData(url);
+    const loginEmail = localStorage.getItem('email');
+    const [remainingTime, setRemainingTime] = useState(0);
+
+    const userData = useMemo(() => data ? data.find((user) => user.email === loginEmail) : null, [data, loginEmail]);
 
     const navigate = useNavigate();
 
     // Sign out function
     function handleSignOut() {
-       logout();
-       navigate('/');
+        logout();
+        navigate('/');
     };
 
     // for countdown
@@ -48,21 +48,21 @@ function UserDetails(){
         }
     }, [userData]);
 
-     // Format time as MM:SS
-     const formatTime = (time) => {
+    // Format time as MM:SS
+    const formatTime = (time) => {
         const minutes = Math.floor(time / 60000);
         const seconds = Math.floor((time % 60000) / 1000);
         return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     };
 
 
-    return(
+    return (
         <div className="min-h-screen">
-             {!isLogin ? (
-            <LoginPage/>
-        ):(
-            <div className="flex flex-col justify-center items-center mx-auto mt-20">
-            <div className="p-5 rounded-md bg-slate-100 h-72 w-64 sm:h-72 sm:w-96 lg:h-80">
+            {!isLogin ? (
+                <LoginPage />
+            ) : (
+                <div className="flex flex-col justify-center items-center mx-auto mt-20">
+                    <div className="p-5 rounded-md bg-slate-100 h-72 w-64 sm:h-72 sm:w-96 lg:h-80">
                         <h3 className="text-xl font-bold mb-4">Profile</h3>
                         {isLoading ? (
                             <p>Loading user data...</p>
@@ -85,13 +85,13 @@ function UserDetails(){
                             <p>No user data found.</p>
                         )}
                     </div>
-            <div className="mt-5 mx-auto w-64 sm:w-96">
-                <button onClick={handleSignOut} className="bg-red-500 w-64 sm:w-96 text-white p-2 active:bg-red-400 rounded-md text-sm">Sign Out</button>
-            </div>
+                    <div className="mt-5 mx-auto w-64 sm:w-96">
+                        <button onClick={handleSignOut} className="bg-red-500 w-64 sm:w-96 text-white p-2 active:bg-red-400 rounded-md text-sm">Sign Out</button>
+                    </div>
+                </div>
+            )};
+
         </div>
-        )};
-       
-    </div>
     )
 };
 

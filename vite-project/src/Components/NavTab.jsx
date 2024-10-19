@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useAuth } from "./Authcontext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCartShopping, faHouse, faMagnifyingGlass, faUser  } from '@fortawesome/free-solid-svg-icons';
 
 function NavTab(){
-    const cartItems = useSelector((state)=>state.Cart.items);
+    
     const {isLogin} = useAuth();
 
     return(

@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     };
     
 
-    // Check token on mount to handle logout 
+    // Check token to handle logout 
     useEffect(()=>{
         const token = localStorage.getItem('token');
 
