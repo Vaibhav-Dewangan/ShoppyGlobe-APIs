@@ -5,29 +5,22 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
+import {jwtDecode} from 'jwt-decode'; 
 
 function ProductDetails(){
-   
-    const url = "https://dummyjson.com/products";
-    const {data, error, loading} = useFetchData(url);
+    const {id} = useParams(); 
+    const url = `http://localhost:5100/products/${id}`;
+    const {data: updatedData , error, loading} = useFetchData(url);
    
     const [ItemImage, setItemImage] = useState('');
-    const {id} = useParams(); 
     const dispatch = useDispatch();
-
-    // Finding the product details from id
-
-    const updatedData = data.find(item => item.id === Number(id));
     
     useEffect(() => {
-      
-          if (updatedData && updatedData.images && updatedData.images.length > 1) {
-              setItemImage(updatedData.images[1]); 
-          } else if (updatedData && updatedData.images.length > 0) {
-              setItemImage(updatedData.images[0]);
-          }
-      
-    }, [data, id]);
+      if (updatedData && updatedData.images && updatedData.images.length > 0) {
+          // Safely check for images array length
+          setItemImage(updatedData.images.length > 1 ? updatedData.images[1] : updatedData.images[0]);
+      }
+  }, [updatedData]);
     
     // handle loading
 
@@ -54,23 +47,65 @@ function ProductDetails(){
       </div>
     ); 
   
-    // handle Add to cart
+   // handle Add to cart
+  const handleAddToCart = async () => {
+    const Token = localStorage.getItem('token');
+    let userId;
 
-    const handleAddToCart = ()=>{
-      const cartItem = {
-        id: updatedData.id,
-        title: updatedData.title,
-        price: updatedData.price,
-        image: ItemImage,
-        brand: updatedData.brand,
-        stocks: updatedData.stock,
-        available: updatedData.availabilityStatus,
-        quantity: 1,
-        shipping : updatedData.shippingInformation,
-      };
-      dispatch(addItem(cartItem));
-      console.log(cartItem);
+    // Decode the token to get the user ID
+    if (Token) {
+        const decodedToken = jwtDecode(Token);
+        userId = decodedToken.userId; 
+    }
+    const cartItem = {
+          userId: userId,
+          productId: updatedData._id,
+          quantity: 1,
+          title : updatedData.title,
+          price : updatedData.price,
+          stock :  updatedData.stock,
+          brand : updatedData.brand,
+          shippingInformation : updatedData.shippingInformation,
+          availabilityStatus : updatedData.availabilityStatus,
+          images : ItemImage,
     };
+
+    // Dispatch to Redux store (local cart state)
+    dispatch(addItem(cartItem));
+
+    // Send POST request to backend (API call)
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('http://localhost:5100/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userId: userId,
+          productId: updatedData._id,
+          quantity: 1,
+          title : updatedData.title,
+          price : updatedData.price,
+          stock :  updatedData.stock,
+          brand : updatedData.brand,
+          shippingInformation : updatedData.shippingInformation,
+          availabilityStatus : updatedData.availabilityStatus,
+          images : ItemImage,
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Product added to cart:", result);
+      } else {
+        console.error("Error adding to cart:", result.message);
+      }
+    } catch (error) {
+      console.error("Network error adding to cart:", error);
+    }
+  };
   
     return( 
         <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg min-h-screen mt-2">

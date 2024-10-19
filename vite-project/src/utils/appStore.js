@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartSlice, { addItem, clearCart, removeItem } from "./cartSlice";
+import cartSlice, { addItem, clearCart, removeItem, setCartItems } from "./cartSlice";
 import cartReducer from "./cartSlice";
 
 const appStore = configureStore({

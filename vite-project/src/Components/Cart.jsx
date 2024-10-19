@@ -1,33 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux"; 
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { clearCart } from "../utils/cartSlice";
+import LoginPage from "./LoginPage";
+import { clearCart, setCartItems } from "../utils/cartSlice";
+import { useAuth } from "./Authcontext";
 
 function Cart() {
+    const [cart, setCart] = useState([]);
+    const { isLogin} = useAuth(); // Use context for login state
     const dispatch = useDispatch();
-    const cartItems = useSelector((state) => state.Cart.items); 
+   
+    // For Api calling
+    const token = localStorage.getItem('token');
+    const headerDetails = {
+        "content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+    };
 
-    console.log(cartItems);
+    //Fetch cart data from API
+    async function fetchCartItems() {
+        try{
+            const response = await fetch("http://localhost:5100/cart",{
+                method: "GET",
+                headers:headerDetails,
 
-    // calculating total price
-
-    const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-    // handle clear cart
-    
-    function handleClearCart(){
-        dispatch(clearCart());
+            });
+            const cart = await response.json();
+            if(response.ok){
+                dispatch(setCartItems(cart));
+                setCart(cart);
+                console.log("cart items fetched successfully")
+            }
+        } catch (error) {
+            console.error("Error fetching cart items:", error);
+        }
 
     };
 
+    useEffect(()=>{
+        fetchCartItems();
+    },[]);
+   
+    // Handle clear cart
+    async function handleClearCart() {
+        try {
+            // Backend request to clear all items in the cart
+            const response = await fetch("http://localhost:5100/cart/clear", {
+                method: "DELETE",
+                headers:headerDetails,
+            });
 
+            if (response.ok) {
+                dispatch(clearCart());
+                setCart([]);
+                console.log("Cart cleared successfully");
+            } else {
+                console.error("Failed to clear cart");
+            }
+        } catch (error) {
+            console.error("Error clearing cart:", error);
+        }
+    };
+
+    // calculating total price
+    const totalPrice = cart.reduce((acc, item) => acc + item.productId.price * item.quantity, 0);
+    
     return (
-        <div className="Cart-container min-h-screen lg:mx-48 p-5 flex flex-col gap-5">
-            {cartItems.length > 0 ? (
-                cartItems.map((item) => (
-                   <CartItem key={item.id} item={item} />
+        <>
+        {!isLogin ? (
+            <LoginPage/>
+        ):(
+            <div className="Cart-container min-h-screen lg:mx-48 p-5 flex flex-col gap-5">
+            {cart.length > 0 ? (
+                cart.map((item) => (
+                   <CartItem key={item._id} item={item} fetchFunction={fetchCartItems} />
                 ))
             ) :  (
                 <div className="empty-cart flex flex-col mx-auto mt-16 sm:mt-20 items-center justify-center h-full text-center">
@@ -57,7 +105,10 @@ function Cart() {
 
 
         </div>
+        )}
+       </>
     );
+    
 }
 
 export default Cart;

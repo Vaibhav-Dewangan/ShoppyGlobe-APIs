@@ -4,6 +4,7 @@ import Footer from './Components/Footer';
 import { Outlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
+import { AuthProvider } from './Components/Authcontext';
 import './App.css';
 
 
@@ -11,9 +12,13 @@ function App() {
   
   return (
     <Provider store={appStore}>
-     <Header />
-     <Outlet />
-     <Footer />
+      
+      <AuthProvider>
+         <Header />
+         <Outlet />
+        <Footer />
+      </AuthProvider>
+     
     </Provider>
   )
 }

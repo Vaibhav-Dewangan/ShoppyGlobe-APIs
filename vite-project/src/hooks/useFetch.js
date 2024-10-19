@@ -14,7 +14,7 @@ function useFetchData(url) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
               }
             const jsonData = await response.json();
-            setData(jsonData.products);
+            setData(jsonData);
             } catch (error){
             setError(error);
             } finally{

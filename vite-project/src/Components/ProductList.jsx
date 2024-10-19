@@ -7,7 +7,7 @@ function ProductList(){
 
     // Fetching url
 
-    const url = "https://dummyjson.com/products";
+    const url = "http://localhost:5100/products";
     const {data, error, loading} = useFetchData(url);
     
     
@@ -49,7 +49,7 @@ function ProductList(){
             <div className="Card-1 flex gap-5 p-6 sm:pl-10 sm:pr-10 lg:pr-20 lg:pl-20 lg:gap-10 overflow-x-auto   ">
             
                {beauty.map((item)=>(
-                    <ProductItem key={item.id} itemId={item.id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
+                    <ProductItem key={item._id} itemId={item._id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
                 ))}
          
             </div>
@@ -60,7 +60,7 @@ function ProductList(){
             <div className="Card-1 flex gap-5 p-6 sm:pl-10 sm:pr-10 lg:pr-20 lg:pl-20 lg:gap-10 overflow-x-auto   ">
             
                {groceries.map((item)=>(
-                    <ProductItem key={item.id} itemId={item.id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
+                    <ProductItem key={item._id} itemId={item._id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
                 ))}
          
             </div>
@@ -71,7 +71,7 @@ function ProductList(){
             <div className="Card-1 flex gap-5 p-6 sm:pl-10 sm:pr-10 lg:pr-20 lg:pl-20 lg:gap-10 overflow-x-auto   ">
             
                {furniture.map((item)=>(
-                    <ProductItem key={item.id} itemId={item.id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
+                    <ProductItem key={item._id} itemId={item._id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
                 ))}
          
             </div>
@@ -82,7 +82,7 @@ function ProductList(){
             <div className="Card-1 flex gap-5 p-6 sm:pl-10 sm:pr-10 lg:pr-20 lg:pl-20 lg:gap-10 overflow-x-auto   ">
             
                {fragrances.map((item)=>(
-                    <ProductItem key={item.id} itemId={item.id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
+                    <ProductItem key={item._id} itemId={item._id} itemTitle={item.title} itemBrand={item.brand} itemPrice={item.price} itemImage={item.images} itemRating={item.rating} loadingStatus={loading} errorStatus={error}  />
                 ))}
          
             </div>

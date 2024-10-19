@@ -5,6 +5,8 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Body from './Components/Body.jsx'
 import App from './App.jsx'
 import NotFound from './Components/NotFound.jsx'
+import LoginPage from './Components/LoginPage.jsx'
+import UserDetails from './Components/UserDetails.jsx'
 import './index.css'
 
 // components with lazy loading
@@ -63,6 +65,14 @@ const appRouter = createBrowserRouter([
             </div> }>
              <ProductDetails />
              </Suspense>),
+      },
+      {
+        path:"/Login",
+        element:<LoginPage />,
+      },
+      {
+        path:"/Account",
+        element:<UserDetails />,
       },
       
     ],

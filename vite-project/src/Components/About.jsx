@@ -6,10 +6,10 @@ function About() {
     <div className="About-container min-h-screen bg-gray-100 text-gray-800 p-5 lg:p-20 sm:mt-7 lg:mt-0">
       <div className="max-w-7xl mx-auto text-center">
         {/* Main Title Section */}
-        <h1 className="text-4xl font-bold mb-4 lg:text-5xl">
+        <h1 className="text-3xl font-bold mb-4 lg:text-5xl">
           Welcome to Shoppy Globe
         </h1>
-        <p className="text-lg lg:text-xl mb-8">
+        <p className="text-base lg:text-xl mb-8">
           Your one-stop destination for all your shopping needs. Discover a world of products with just a few clicks!
         </p>
 
