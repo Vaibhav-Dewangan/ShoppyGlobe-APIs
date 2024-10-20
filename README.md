@@ -1,5 +1,4 @@
 # ShoppyGlobe-APIs
-Here’s the updated README for your ShoppyGlobe project, incorporating the backend API development with Node.js, Express, and MongoDB:
 
 ## Overview
 Shoppy Globe is a modern e-commerce platform built with React for the frontend and Node.js with Express and MongoDB for the backend. It offers users a seamless shopping experience, including product browsing, cart management, and user authentication.
