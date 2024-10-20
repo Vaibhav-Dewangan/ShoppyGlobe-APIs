@@ -23,8 +23,8 @@ The backend API for ShoppyGlobe is built using Node.js, Express, and MongoDB, pr
    - *GET /api/products*: Fetch a list of products from MongoDB.
    - *GET /api/products/:id*: Fetch details of a single product by its ID.
    - *POST /api/cart/add*: Add a product to the shopping cart.
-   - *PATCH /api/cart/update/dec/:id*: Decrease the quantity of a product in the cart.
-   - *PATCH /api/cart/update/inc/:id*: Increase the quantity of a product in the cart.
+   - *PUT /api/cart/update/dec/:id*: Decrease the quantity of a product in the cart.
+   - *PUT /api/cart/update/inc/:id*: Increase the quantity of a product in the cart.
    - *DELETE /api/cart/remove/:id*: Remove a product from the cart.
    - *DELETE /api/cart/clear*: Clear all items from the cart.
    - *GET /api/cart*: Get all items in the cart.
