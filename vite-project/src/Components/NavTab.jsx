@@ -9,7 +9,7 @@ function NavTab(){
     const {isLogin} = useAuth();
 
     return(
-        <div className="Nav-container sm:bg-slate-950 bg-white sm:text-white max-sm:shadow-md  p-1 pr-6 pl-6 sm:pr-10 sm:pl-10 lg:pr-20 lg:pl-20">
+        <div className="Nav-container sm:bg-slate-800 bg-white sm:text-white max-sm:shadow-md  p-1 pr-6 pl-6 sm:pr-10 sm:pl-10 lg:pr-20 lg:pl-20">
 
              <ul className="Nav-list flex justify-between items-center sm:justify-start sm:gap-10 md:14 text-sm lg:text-base ">
 

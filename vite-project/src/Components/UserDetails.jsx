@@ -14,7 +14,7 @@ function UserDetails() {
     const loginEmail = localStorage.getItem('email');
     const [remainingTime, setRemainingTime] = useState(0);
 
-    const userData = useMemo(() => data ? data.find((user) => user.email === loginEmail) : null, [data, loginEmail]);
+    const userData = useMemo(() => data ? data.find((user) => user.email === loginEmail) : null, [data, loginEmail, isLogin]);
 
     const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ function UserDetails() {
 
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen ">
             {!isLogin ? (
                 <LoginPage />
             ) : (

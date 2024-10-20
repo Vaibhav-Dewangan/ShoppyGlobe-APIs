@@ -57,9 +57,11 @@ const LoginPage = ()=>{
             }
 
         } catch(error){
-            setLoading(false);  // Stop loading
             console.error('Error:', error);
             setErrorMessage('Something went wrong, please try again.');
+            
+        }  finally {
+            setLoading(false);  // Stop loading
         }
     };
 

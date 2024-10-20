@@ -15,11 +15,11 @@ function ProductItem(props) {
     <>
       {props.loadingStatus === false ? (
 
-        <Link to={`/products/productDetails/${props.itemId}`}> <div className="Item-Card h-56 w-40 lg:h-72 lg:w-52 shadow-md  flex justify-center  flex-col bg-white items-center flex-shrink-0 p-5 hover:scale-105 rounded-lg" >
+        <Link to={`/products/productDetails/${props.itemId}`}> <div className="Item-Card h-48 w-32 sm:h-52 sm:w-36 md:h-56 md:w-40 lg:h-64 lg:w-52 shadow-md  flex justify-center  flex-col bg-white items-center flex-shrink-0 p-5 hover:scale-105 rounded-lg" >
 
-          <img className="Item-Card-img mb-5 bg-cover h-24 w-24  lg:h-36 lg:w-36 rounded-md bg-white " src={ItemImage} alt="book" />
+          <img className="Item-Card-img mb-5 bg-cover h-24 w-24 lg:h-36 lg:w-36 rounded-md bg-white " src={ItemImage} alt="book" />
 
-          <div className="flex text-center text-sm flex-col ">
+          <div className="flex text-center text-xs sm:text-xs md:text-sm flex-col ">
             <p>{props.itemTitle} <b>{props.itemBrand} </b></p>
             <p><b>$ {props.itemPrice}</b></p>
           </div>

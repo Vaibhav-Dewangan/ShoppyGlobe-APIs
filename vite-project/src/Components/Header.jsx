@@ -14,7 +14,7 @@ function Header() {
   };
   return (
     <>
-      <div className="header-container bg-slate-950 shadow-lg h-20 lg:h-28 sm:h-20 p-6 sm:p-10 lg:pr-20 lg:pl-20 lg:mb-5 flex align-middle items-center justify-between">
+      <div className="header-container sticky top-0 z-10 bg-slate-800 shadow-lg h-16 lg:h-20 sm:h-16 p-6 sm:p-10 lg:pr-20 lg:pl-20  flex align-middle items-center justify-between">
         <div className="title flex items-center">
           <span className="title text-white font-bold sm:text-xl lg:text-2xl flex flex-row items-center gap-2"><FontAwesomeIcon className="pr-1" icon={faBagShopping} /> Shoppy Globe</span>
         </div>

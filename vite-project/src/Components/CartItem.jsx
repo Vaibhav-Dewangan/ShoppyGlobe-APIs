@@ -122,14 +122,10 @@ function CartItem({ item, fetchFunction }) {
                         <button onClick={handlePlus} className="text-green-500"><FontAwesomeIcon icon={faPlus} /></button>
                     </div>
 
-                    <button onClick={handleRemoveItem} className="bg-red-500 text-white text-sm p-1 pr-4 pl-4 rounded-lg hover:bg-blue-600 active:scale-95">
+                    <button onClick={handleRemoveItem} className="bg-red-500 text-white text-sm p-1 pr-4 pl-4 rounded-lg hover:bg-red-800 active:scale-95">
                         Remove
                     </button>
                 </div>
-
-
-
-
 
             </div>
         </div>

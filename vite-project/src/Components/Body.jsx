@@ -12,7 +12,7 @@ function Body() {
 
             {/* welcome page */}
            
-            <section className="Welcome-page flex flex-row overflow-x-scroll ">
+            <section className="Welcome-page flex flex-row  ">
                <WelcomePage />
             </section>
 
