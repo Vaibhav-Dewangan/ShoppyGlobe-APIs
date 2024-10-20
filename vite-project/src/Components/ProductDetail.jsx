@@ -90,7 +90,7 @@ function ProductDetails() {
 
       const result = await response.json();
       if (response.ok) {
-        console.log("Product added to cart:", result);
+        console.log("Product added to cart");
       } else {
         console.error("Error adding to cart:", result.message);
       }

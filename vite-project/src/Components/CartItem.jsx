@@ -64,7 +64,7 @@ function CartItem({ item, fetchFunction }) {
                     const updatedItem = await response.json();
                     setQuantity(updatedItem.quantity);
                     dispatch(addItem({ id: item._id, quantity: 1 }));
-                    console.log(updatedItem);
+                    console.log("updated quantity");
                 } else {
                     setErrorMessage("Failed to update quantity.");
                 }
@@ -91,7 +91,7 @@ function CartItem({ item, fetchFunction }) {
                     const updatedItem = await response.json();
                     setQuantity(updatedItem.quantity);
                     dispatch(addItem({ id: item._id, quantity: -1 }));
-                    console.log(updatedItem);
+                    console.log("Updated quantity");
                 } else {
                     setErrorMessage("Failed to update quantity.");
                 }

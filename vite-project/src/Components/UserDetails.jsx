@@ -2,19 +2,60 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useAuth } from "./Authcontext";
 import { useNavigate } from "react-router-dom";
 import LoginPage from "./LoginPage";
-import useFetchData from "../hooks/useFetch";
 import { jwtDecode } from "jwt-decode";
 
 
 function UserDetails() {
 
     const { logout, isLogin } = useAuth();
-    const url = "http://localhost:5100/users";
-    const { data, isLoading, error } = useFetchData(url);
     const loginEmail = localStorage.getItem('email');
+    const url = `http://localhost:5100/users/${loginEmail}`;
+    const [data, setData] = useState(null);
     const [remainingTime, setRemainingTime] = useState(0);
+    const [userData, setUserData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const userData = useMemo(() => data ? data.find((user) => user.email === loginEmail) : null, [data, loginEmail, isLogin]);
+    // Fetch user data by email
+    const fetchUserDataByEmail = async () => {
+        setIsLoading(true);
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+            const result = await response.json();
+            if (response.ok) {
+                setData(result);
+            } else {
+                console.error("Error getting data:", result.message);
+                setError(result.message);
+            }
+        } catch (error) {
+            console.error("Network error getting data:", error);
+            setError('Network error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // Fetch user data when user logs in or after registration
+    useEffect(() => {
+        if (isLogin && loginEmail) {
+            fetchUserDataByEmail();
+        }
+    }, [isLogin, loginEmail]);
+
+    // Set user data once it's fetched
+    useEffect(() => {
+        if (isLogin && data) {
+            setUserData(data || null);
+        }
+    }, [isLogin, data]);
 
     const navigate = useNavigate();
 
