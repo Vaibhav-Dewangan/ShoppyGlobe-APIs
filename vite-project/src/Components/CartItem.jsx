@@ -29,7 +29,7 @@ function CartItem({ item, fetchFunction }) {
     const handleRemoveItem = async () => {
         try {
             // Backend remove request
-            const response = await fetch(`http://localhost:5100/cart/remove/${item._id}`, {
+            const response = await fetch(`http://localhost:5100/api/cart/remove/${item._id}`, {
                 method: "DELETE",
                 headers: headerDetails,
             });
@@ -51,12 +51,12 @@ function CartItem({ item, fetchFunction }) {
 
     // Handle increment quantity
     const handlePlus = async () => {
-        if (item.quantity < 10) {
+        if (quantity < 10) {
 
             // Update quantity in the backend
             try {
-                const response = await fetch(`http://localhost:5100/cart/update/inc/${item._id}`, {
-                    method: "PATCH",
+                const response = await fetch(`http://localhost:5100/api/cart/update/inc/${item._id}`, {
+                    method: "PUT",
                     headers: headerDetails,
                 });
 
@@ -81,8 +81,8 @@ function CartItem({ item, fetchFunction }) {
 
             // Update quantity in the backend
             try {
-                const response = await fetch(`http://localhost:5100/cart/update/dec/${item._id}`, {
-                    method: "PATCH",
+                const response = await fetch(`http://localhost:5100/api/cart/update/dec/${item._id}`, {
+                    method: "PUT",
                     headers: headerDetails,
 
                 });

@@ -29,11 +29,11 @@ app.use(cors({ origin: '*' }));
 
 
 // Use Routes
-app.use('/products', productRoutes);
-app.use('/cart', cartRoutes);
-app.use('/auth', authRoutes);
-app.use('/fetch-products', fetchProductRoutes);
-app.use('/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/fetch-products', fetchProductRoutes);
+app.use('/api/users', userRoutes);
 
 // Logging Middleware
 app.use((req, res, next)=>{

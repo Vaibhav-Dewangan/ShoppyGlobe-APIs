@@ -48,7 +48,7 @@ export const addToCart = async (req, res) => {
     }
 };
 
-// PATCH /cart: Update the quantity (handlePlus '+') of a product in the cart.
+// PUT /cart: Update the quantity (handlePlus '+') of a product in the cart.
 export const updateCartPlus = async (req, res) => {
     try {
         const id = req.params.id;
@@ -69,7 +69,7 @@ export const updateCartPlus = async (req, res) => {
     }
 };
 
-// PATCH /cart: Update the quantity (handleMinus '-') of a product in the cart.
+// PUT /cart: Update the quantity (handleMinus '-') of a product in the cart.
 export const updateCartMinus = async (req, res) => {
     try {
         const id = req.params.id;

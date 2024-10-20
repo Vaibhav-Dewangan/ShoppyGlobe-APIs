@@ -35,7 +35,7 @@ const LoginPage = ()=>{
         setErrorMessage("");  // Clear previous error
 
         try{
-            const url = newUser ? 'http://localhost:5100/auth/register' : 'http://localhost:5100/auth/login';
+            const url = newUser ? 'http://localhost:5100/api/auth/register' : 'http://localhost:5100/api/auth/login';
             const response = await fetch(url,{
                 method: 'POST',
                 headers: {'content-Type':'application/json'},

@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 
 function ProductDetails() {
   const { id } = useParams();
-  const url = `http://localhost:5100/products/${id}`;
+  const url = `http://localhost:5100/api/products/${id}`;
   const { data: updatedData, error, loading } = useFetchData(url);
 
   const [ItemImage, setItemImage] = useState('');
@@ -75,7 +75,7 @@ function ProductDetails() {
     // Send POST request to backend (API call)
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:5100/cart/add', {
+      const response = await fetch('http://localhost:5100/api/cart/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

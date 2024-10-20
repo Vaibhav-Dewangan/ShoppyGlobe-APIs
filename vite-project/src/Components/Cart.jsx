@@ -22,7 +22,7 @@ function Cart() {
     //Fetch cart data from API
     async function fetchCartItems() {
         try{
-            const response = await fetch("http://localhost:5100/cart",{
+            const response = await fetch("http://localhost:5100/api/cart",{
                 method: "GET",
                 headers:headerDetails,
 
@@ -47,7 +47,7 @@ function Cart() {
     async function handleClearCart() {
         try {
             // Backend request to clear all items in the cart
-            const response = await fetch("http://localhost:5100/cart/clear", {
+            const response = await fetch("http://localhost:5100/api/cart/clear", {
                 method: "DELETE",
                 headers:headerDetails,
             });
@@ -72,7 +72,7 @@ function Cart() {
         {!isLogin ? (
             <LoginPage/>
         ):(
-            <div className="Cart-container min-h-screen lg:mx-48 p-5 flex flex-col gap-5">
+            <div className="Cart-container min-h-screen lg:mx-48 p-5 pt-10 flex flex-col gap-5">
             {cart.length > 0 ? (
                 cart.map((item) => (
                    <CartItem key={item._id} item={item} fetchFunction={fetchCartItems} />

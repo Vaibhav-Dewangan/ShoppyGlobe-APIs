@@ -11,10 +11,10 @@ router.use(verifyJWT);
 router.post('/add', addToCart);
 
 // Route to Update the quantity (handleMinus '-') of a product in the cart.
-router.patch('/update/dec/:id' , updateCartMinus);
+router.put('/update/dec/:id' , updateCartMinus);
 
 // Route to Update the quantity (handlePlus '+') of a product in the cart.
-router.patch('/update/inc/:id' , updateCartPlus);
+router.put('/update/inc/:id' , updateCartPlus);
 
 // Route to remove a product from the cart
 router.delete('/remove/:id' , removeFromCart);

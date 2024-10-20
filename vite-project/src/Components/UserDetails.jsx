@@ -9,7 +9,7 @@ function UserDetails() {
 
     const { logout, isLogin } = useAuth();
     const loginEmail = localStorage.getItem('email');
-    const url = `http://localhost:5100/users/${loginEmail}`;
+    const url = `http://localhost:5100/api/users/${loginEmail}`;
     const [data, setData] = useState(null);
     const [remainingTime, setRemainingTime] = useState(0);
     const [userData, setUserData] = useState(null);

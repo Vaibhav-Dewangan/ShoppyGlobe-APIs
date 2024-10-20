@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Search() {
 
-    const url = 'http://localhost:5100/products';
+    const url = 'http://localhost:5100/api/products';
     const { data, loading, error } = useFetchData(url);
     const [searchInput, setSearchInput] = useState('');
     const [searchFilter, setSearchFilter] = useState([]);
